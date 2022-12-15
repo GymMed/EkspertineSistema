@@ -42,9 +42,9 @@ namespace EkspertineSistema
             this.AcceptConclusionButton = new System.Windows.Forms.Button();
             this.ConclusionLabel = new System.Windows.Forms.Label();
             this.StartPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.StartSystemButton = new System.Windows.Forms.Button();
             this.SystemNameLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.QuestionPanel.SuspendLayout();
             this.MultiQuestionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridQuestion)).BeginInit();
@@ -204,6 +204,15 @@ namespace EkspertineSistema
             this.StartPanel.Size = new System.Drawing.Size(776, 297);
             this.StartPanel.TabIndex = 4;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::EkspertineSistema.Properties.Resources.ExpertSystem50x50;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(212, 218);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // StartSystemButton
             // 
             this.StartSystemButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -229,24 +238,15 @@ namespace EkspertineSistema
             this.SystemNameLabel.Text = "System";
             this.SystemNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::EkspertineSistema.Properties.Resources.ExpertSystem50x50;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(212, 218);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 321);
+            this.Controls.Add(this.MultiQuestionPanel);
             this.Controls.Add(this.StartPanel);
             this.Controls.Add(this.ConclusionPanel);
             this.Controls.Add(this.QuestionPanel);
-            this.Controls.Add(this.MultiQuestionPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(816, 360);
             this.Name = "MainForm";

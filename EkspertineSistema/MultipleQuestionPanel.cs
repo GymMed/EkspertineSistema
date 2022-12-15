@@ -16,6 +16,9 @@ namespace EkspertineSistema
 
         private QuestionInfo questionInformation;
 
+        private const int questionNewLineSize = 31;
+        private static int mainDataGridHeight, mainDataGridY;
+
         public MultipleQuestionPanel(Panel mainPanel, DataGridView mainDataGrid, Label mainQuestionLabel, Button acceptButton, QuestionInfo questionInformation = null)
         {
             this.mainPanel = mainPanel;
@@ -24,6 +27,9 @@ namespace EkspertineSistema
             this.mainDataGrid = mainDataGrid;
 
             this.questionInformation = questionInformation;
+
+            mainDataGridHeight = mainDataGrid.Height;
+            mainDataGridY = mainDataGrid.Top;
         }
 
         public void ActivateQuestion()
@@ -43,6 +49,13 @@ namespace EkspertineSistema
                     this.mainDataGrid.Columns.Clear();
 
                     this.mainQuestionLabel.Text = this.questionInformation.GetQuestion();
+
+                    int newLines = this.questionInformation.GetNewLines();
+
+                    if(newLines > 1)
+                    {
+                        MoveDataGridBasedOnNewLines(newLines);
+                    }
 
                     DataGridViewCheckBoxColumn CheckBoxSelectAnswer = new DataGridViewCheckBoxColumn();
                     CheckBoxSelectAnswer.HeaderText = "Select";
@@ -64,6 +77,19 @@ namespace EkspertineSistema
             }
         }
 
+        private void MoveDataGridBasedOnNewLines(int totalNewLines)
+        {
+            int impactSize = (totalNewLines - 1) * questionNewLineSize;
+            this.mainDataGrid.Top = mainDataGridY + impactSize;
+            this.mainDataGrid.Height = this.mainDataGrid.Height - impactSize;
+        }
+
+        public void ResetDataGridLocationAndSize()
+        {
+            this.mainDataGrid.Top = mainDataGridY;
+            this.mainDataGrid.Height = mainDataGridHeight;
+        }
+
         public Answer ButtonClick()
         {
             List<Answer> answers = this.questionInformation.GetAnswers();
@@ -82,6 +108,11 @@ namespace EkspertineSistema
         public void SetQuestionInformation(QuestionInfo setQuestionInformation)
         {
             this.questionInformation = setQuestionInformation;
+        }
+
+        public QuestionInfo GetQuestionInformation()
+        {
+            return this.questionInformation;
         }
     }
 }

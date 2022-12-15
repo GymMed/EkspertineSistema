@@ -31,7 +31,7 @@ namespace EkspertineSistema
             InitializeComponent();
             Setup_System();
 
-            this.SystemNameLabel.Text = "Programavimo klaidų taisymo\n šaltinio suradimo ekspertinė sistema";
+            this.SystemNameLabel.Text = "Programavimo klaidų taisymo\n ekspertinė sistema";
 
             List<Answer> lastAnswers = new List<Answer>();
             List<Answer> articleAnswers = new List<Answer>();
@@ -62,36 +62,36 @@ namespace EkspertineSistema
             List<Answer> canDeterminateProblemAnswers = new List<Answer>();
             List<Answer> questioningGoogleAnswers = new List<Answer>();
 
-            lastAnswers.Add(new Answer("Taip", new Conclusion("Problema ištaisau atkartodamas straipsnį atliktus veiksmus")));
-            lastAnswers.Add(new Answer("Ne", new Conclusion("Prašau detalesnio paaiškinimo forumose, kaip stack overflow")));
+            lastAnswers.Add(new Answer("Taip", new Conclusion("Problemą išsprendžiu atkartodamas straipsnyje atliktus veiksmus")));
+            lastAnswers.Add(new Answer("Ne", new Conclusion("Prašau detalesnio paaiškinimo forumose(pvz.: stack overflow)")));
 
-            QuestionInfo articleSearch = new QuestionInfo("Ar randu straipsnių, kaip žingsnis po žingsnio išsprendžiama problema?", lastAnswers);
+            QuestionInfo articleSearch = new QuestionInfo("Ar randu straipsnių, kuriuose žingsnis po žingsnio išsprendžiama problema?", lastAnswers);
 
-            articleAnswers.Add(new Answer("Taip", new Conclusion("Problema ištaisau atkartodamas vaizdo įraše atliktus veiksmus")));
-            articleAnswers.Add(new Answer("Ne", articleSearch));
+            //articleAnswers.Add(new Answer("Taip", new Conclusion("Problema išsprendžiu atkartodamas vaizdo įraše atliktus veiksmus")));
+            //articleAnswers.Add(new Answer("Ne", articleSearch));
 
-            QuestionInfo googleVideoSearch = new QuestionInfo("Ar randu per google vaizdo įrašų paiešką, kaip problema išsprendžiama?", articleAnswers);
+            googleVideoAnswers.Add(new Answer("Taip", new Conclusion("Problemą išsprendžiu atkartodamas vaizdo įraše atliktus veiksmus")));
+            googleVideoAnswers.Add(new Answer("Ne", articleSearch));
 
-            googleVideoAnswers.Add(new Answer("Taip", new Conclusion("Problema ištaisau atkartodamas vaizdo įraše atliktus veiksmus")));
-            googleVideoAnswers.Add(new Answer("Ne", googleVideoSearch));
+            QuestionInfo googleVideoSearch = new QuestionInfo("Naudodamas Google vaizdo įrašų paiešką ar randu, kaip problema išsprendžiama?", googleVideoAnswers);
 
-            QuestionInfo youtubeVideoSearch = new QuestionInfo("Ar randu youtube svetainėja vaizdo įrašą, kaip problema išsprendžiama?", googleVideoAnswers);
+            youtubeVideoAnswers.Add(new Answer("Taip", new Conclusion("Problema pataisau atkartodamas vaizdo įraše atliktus veiksmus")));
+            youtubeVideoAnswers.Add(new Answer("Ne", googleVideoSearch));
 
-            youtubeVideoAnswers.Add(new Answer("Taip", new Conclusion("Problema ištaisau atkartodamas vaizdo įraše atliktus veiksmus")));
-            youtubeVideoAnswers.Add(new Answer("Ne", youtubeVideoSearch));
+            QuestionInfo youtubeVideoSearch = new QuestionInfo("Ar randu Youtube svetainėje vaizdo įrašą, kaip problema išsprendžiama?", youtubeVideoAnswers);
 
-            QuestionInfo fixMySelf = new QuestionInfo("Ar sugebu pats sutvarkyti problemą?", youtubeVideoAnswers);
+            fixMySelfAnswers.Add(new Answer("Taip", new Conclusion("Problema išsprendžiu pats, susiaurindamas paieškos vietą")));
+            fixMySelfAnswers.Add(new Answer("Ne", youtubeVideoSearch));
 
-            fixMySelfAnswers.Add(new Answer("Taip", new Conclusion("Problema ištaisau pats susiaurindamas paieškos vietą")));
-            fixMySelfAnswers.Add(new Answer("Ne", fixMySelf));
+            QuestionInfo fixMySelf = new QuestionInfo("Ar sugebu pats sutvarkyti problemą?", fixMySelfAnswers);
 
-            Conclusion stackOverflow = new Conclusion("Aprašau savo problemą forumuose, kaip stackoverflow ir laukiu atsakymo");
+            Conclusion stackOverflow = new Conclusion("Aprašau savo problemą forumuose(pvz.:stackoverflow) ir laukiu atsakymo");
 
             //change question qoestions/answers name ordering because of uniquenes of answering
             canFindProblemAnswers.Add(new Answer("Taip", fixMySelf));
             canFindProblemAnswers.Add(new Answer("Ne", stackOverflow));
 
-            QuestionInfo canFindProblem = new QuestionInfo("Ar sugebu atrasti problemą?", canFindProblemAnswers);
+            QuestionInfo canFindProblem = new QuestionInfo("Ar sugebu surasti problemą?", canFindProblemAnswers);
 
             understandProblemDescriptionAnswers.Add(new Answer("Taip", canFindProblem));
 
@@ -100,7 +100,7 @@ namespace EkspertineSistema
             understandProblemFromSimiliarArticlesAnswers.Add(new Answer("Taip", fixMySelf));
             understandProblemFromSimiliarArticlesAnswers.Add(new Answer("Ne", stackOverflow));
 
-            QuestionInfo understandProblemFromSimiliarArticles = new QuestionInfo("Ar sugebu suprast problemą iš panašių straipsnių?", understandProblemFromSimiliarArticlesAnswers);
+            QuestionInfo understandProblemFromSimiliarArticles = new QuestionInfo("Naudodamiesi Google paieškos sistema pateikite problemą. Ar suprantate problemos šaltinį naudodamiesi pateiktais straipsniais?", understandProblemFromSimiliarArticlesAnswers);
 
             understandTranslatedProblemDescriptionAnswers.Add(new Answer("Ne", understandProblemFromSimiliarArticles));
 
@@ -109,12 +109,12 @@ namespace EkspertineSistema
             wordByWordTranslationUnderstandableAnswers.Add(new Answer("Taip", fixMySelf));
             wordByWordTranslationUnderstandableAnswers.Add(new Answer("Ne", understandProblemFromSimiliarArticles));
 
-            QuestionInfo wordByWordTranslationUnderstandable = new QuestionInfo("Ar pažodžiui išverčia suprantamai?", wordByWordTranslationUnderstandableAnswers);
+            QuestionInfo wordByWordTranslationUnderstandable = new QuestionInfo("Ar kiekvieną žodį išverčia suprantamai?", wordByWordTranslationUnderstandableAnswers);
 
             isTranslationUnderstandableAnswers.Add(new Answer("Taip", understandTranslatedProblemDescription));
             isTranslationUnderstandableAnswers.Add(new Answer("Ne", wordByWordTranslationUnderstandable));
 
-            QuestionInfo isTranslationUnderstandable = new QuestionInfo("Ar google vertėjas išverčia suprantamai?", isTranslationUnderstandableAnswers);
+            QuestionInfo isTranslationUnderstandable = new QuestionInfo("Ar Google vertėjas išverčia suprantamai?", isTranslationUnderstandableAnswers);
 
             understandProblemDescriptionAnswers.Add(new Answer("Nesuprantu, nes nemoku išsiversti iš anglų kalbos", isTranslationUnderstandable));
 
@@ -128,7 +128,7 @@ namespace EkspertineSistema
             newKeyWordsArticlesAnswers.Add(new Answer("Taip, bet klaidos panašumų nerandu", stackOverflow));
             newKeyWordsArticlesAnswers.Add(new Answer("Ne", stackOverflow));
 
-            QuestionInfo newKeyWordsArticles = new QuestionInfo("Ar randu pagal naujus raktinius žodžius panašių straipsnių?", newKeyWordsArticlesAnswers);
+            QuestionInfo newKeyWordsArticles = new QuestionInfo("Ar randu, atitinkančių raktinius žodžius, straipsnių remiantis naujais raktiniais žodžiais?", newKeyWordsArticlesAnswers);
 
             checkKeyWordsArticlesAnswers.Add(new Answer("Taip", stackOverflow));
             checkKeyWordsArticlesAnswers.Add(new Answer("Ne", newKeyWordsArticles));
@@ -139,7 +139,7 @@ namespace EkspertineSistema
             keyWordsArticlesAnswers.Add(new Answer("Taip, bet klaidos panašumų nerandu", checkKeyWordsArticles));
             keyWordsArticlesAnswers.Add(new Answer("Ne", stackOverflow));
 
-            QuestionInfo keyWordsArticles = new QuestionInfo("Ar randu pagal raktinius žodžius panašių straipsnių?", keyWordsArticlesAnswers);
+            QuestionInfo keyWordsArticles = new QuestionInfo("Ar randu panašių straipsnių remiantis raktiniais žodžiais?", keyWordsArticlesAnswers);
 
             similiarArticlesAnswers.Add(new Answer("Taip", understandProblemFromSimiliarArticles));
             similiarArticlesAnswers.Add(new Answer("Ne", keyWordsArticles));
@@ -149,7 +149,7 @@ namespace EkspertineSistema
             findExplanationsOnGoogleAnswers.Add(new Answer("Taip", understandProblem));
             findExplanationsOnGoogleAnswers.Add(new Answer("Ne", similiarArticles));
 
-            QuestionInfo findExplanationsOnGoogle = new QuestionInfo("Ar paieškos sistemoje google surandu paaiškinimus?", findExplanationsOnGoogleAnswers);
+            QuestionInfo findExplanationsOnGoogle = new QuestionInfo("Ar paieškos sistemoje Google surandu paaiškinimus?", findExplanationsOnGoogleAnswers);
 
             understandProblemDescriptionAnswers.Add(new Answer("Nesuprantu profesinių žodžių", findExplanationsOnGoogle));
             //On Last
@@ -158,34 +158,34 @@ namespace EkspertineSistema
             googleKeyWordsVersionsAnswers.Add(new Answer("Taip", fixMySelf));
             googleKeyWordsVersionsAnswers.Add(new Answer("Ne", stackOverflow));
 
-            QuestionInfo googleKeyWordsVersions = new QuestionInfo("Ar įvedus raktinius žodžius, paieškos sistemai google, del versijų nesuderinamumo sugebu atrasti klaidą?", googleKeyWordsVersionsAnswers);
+            QuestionInfo googleKeyWordsVersions = new QuestionInfo("Ar įvedus raktinius žodžius, paieškos sistemoje Google, dėl versijų nesuderinamumo sugebu atrasti klaidą?", googleKeyWordsVersionsAnswers);
 
             //end node
             googleVersionsAnswers.Add(new Answer("Taip", fixMySelf));
             googleVersionsAnswers.Add(new Answer("Ne", googleKeyWordsVersions));
 
-            QuestionInfo googleVersions = new QuestionInfo("Ar užduodant klausimą paieškos sistemai google del versijų nesuderinamumo sugebu atrasti klaidą?", googleVersionsAnswers);
+            QuestionInfo googleVersions = new QuestionInfo("Ar pateikiant klausimą paieškos sistemai Google dėl versijų nesuderinamumo sugebu atrasti klaidą?", googleVersionsAnswers);
 
             //end node
             canDeterminateProblemAnswers.Add(new Answer("Taip", fixMySelf));
             canDeterminateProblemAnswers.Add(new Answer("Ne", stackOverflow));
 
-            QuestionInfo canDeterminateProblem = new QuestionInfo("Ar išeina nustatyti neveikimo priežastį?", canDeterminateProblemAnswers);
+            QuestionInfo canDeterminateProblem = new QuestionInfo("Ar galiu nustatyti neveikimo priežastį?", canDeterminateProblemAnswers);
 
             commentPartsOfCodeAnswers.Add(new Answer("Taip", canDeterminateProblem));
             commentPartsOfCodeAnswers.Add(new Answer("Ne", googleVersions));
 
-            QuestionInfo commentPartsOfCode = new QuestionInfo("Ar išeina atkomentuoti dalį kodo?", commentPartsOfCodeAnswers);
+            QuestionInfo commentPartsOfCode = new QuestionInfo("Ar pavyksta sėkmingai atkomentuoti dalį kodo?", commentPartsOfCodeAnswers);
 
             commentAllAnswers.Add(new Answer("Taip", googleVersions));
             commentAllAnswers.Add(new Answer("Ne", commentPartsOfCode));
 
-            QuestionInfo commentAll = new QuestionInfo("Ar užkomentavus visą kodą programa vistiek neveikia?", commentAllAnswers);
+            QuestionInfo commentAll = new QuestionInfo("Ar užkomentuojant visą kodą programa vis tiek neveikia?", commentAllAnswers);
 
             questioningGoogleAnswers.Add(new Answer("Taip", fixMySelf));
             questioningGoogleAnswers.Add(new Answer("Ne", googleKeyWordsVersions));
 
-            QuestionInfo questioningGoogle = new QuestionInfo("Ar užduodant klausimą paieškos sistemai google sugebu atrasti klaidą?", questioningGoogleAnswers);
+            QuestionInfo questioningGoogle = new QuestionInfo("Ar pateikiant klausimą paieškos sistemai Google sugebu atrasti klaidą?", questioningGoogleAnswers);
 
             commentLastChangesAnswers.Add(new Answer("Taip", canFindProblem));
             commentLastChangesAnswers.Add(new Answer("Ne", commentAll));
@@ -208,18 +208,7 @@ namespace EkspertineSistema
             firstAnswers.Add(new Answer("Taip", understandProblemDescription));
             firstAnswers.Add(new Answer("Ne", lastChanges));
 
-            //List<Answer> firstfirstAnswers = new List<Answer>();
-            //
-            //firstfirstAnswers.Add(new Answer("Taip", new Conclusion("Myletojas")));
-            //firstfirstAnswers.Add(new Answer("Ne", new Conclusion("Zudikas")));
-            //
-            //firstAnswers.Add(new Answer("Taip",
-            //    new QuestionInfo("Ar suprantu klaidos aprašą?", firstfirstAnswers)));
-            //firstAnswers.Add(new Answer("Ne",
-            //    new QuestionInfo("Ar gali sužinoti paskutinius pakeitimus?", firstfirstAnswers)));
-            //firstAnswers.Add(new Answer("Gal", new Conclusion("Gal ir myli")));
-
-            QuestionInfo firstQuestion =  new QuestionInfo("Ar klaida išrašoma konsolėja?", firstAnswers);
+            QuestionInfo firstQuestion =  new QuestionInfo("Ar klaida pateikiama konsolėje?", firstAnswers);
 
             MultipleQuestionPanel multipleQuestionPanel = new MultipleQuestionPanel(this.MultiQuestionPanel, this.dataGridQuestion, this.multiQuestionLabel,
                 this.multipleButton);

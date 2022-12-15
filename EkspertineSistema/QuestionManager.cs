@@ -90,6 +90,11 @@ namespace EkspertineSistema
             }
             else
             {
+                if(multipleQuestionPanel.GetQuestionInformation()?.GetNewLines() > 0)
+                {
+                    multipleQuestionPanel.ResetDataGridLocationAndSize();
+                }
+
                 multipleQuestionPanel.SetQuestionInformation(this.questionInformation);
                 multipleQuestionPanel.ActivateQuestion();
 

@@ -36,9 +36,10 @@ namespace EkspertineSistema
 
             for(int currentChar = 0; currentChar < textLength; currentChar++)
             {
-                if(currentChar > 40 * insertsIndex && text[currentChar] == ' ' && textLength > currentChar + 1)
+                if(currentChar > 40 * insertsIndex && returnText[currentChar] == ' ' && textLength > currentChar)
                 {
                     returnText = returnText.Insert(currentChar + 1, "\n");
+                    textLength++;
                     insertsIndex++;
                 }
             }

@@ -10,6 +10,7 @@ namespace EkspertineSistema
     {
         private string question;
         private List<Answer> answers;
+        private int totalNewLines = 0;
 
         public QuestionInfo(string setQuestion, List<Answer> setListAnswers)
         {
@@ -27,9 +28,15 @@ namespace EkspertineSistema
             return this.answers;
         }
 
+        public int GetNewLines()
+        {
+            return totalNewLines;
+        }
+
         public void SetQuestion(string setQuestion)
         {
             setQuestion = TextFixer.Fix_Text(setQuestion);
+            totalNewLines = setQuestion.Split('\n').Length;
             this.question = setQuestion;
         }
 
